@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3Yc-ez-5is">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MapDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBu-DQ-aeB">
+                                <rect key="frame" x="157" y="357" width="100" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Go to Maps">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="LogInBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oaS-l7-k9p"/>
+                                    <segue destination="hKq-ub-AoB" kind="show" id="DwH-3y-4hs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rBu-DQ-aeB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GYg-IV-y4Y"/>
+                            <constraint firstItem="rBu-DQ-aeB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="269" id="xEL-DJ-dba"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EeL-RT-DM1"/>
+                    <connections>
+                        <outlet property="LoginBtn" destination="rBu-DQ-aeB" id="QK8-UM-L0j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="103.79464285714285"/>
+        </scene>
+        <!--Google Maps-->
+        <scene sceneID="LAq-lg-2pN">
+            <objects>
+                <viewController id="hKq-ub-AoB" customClass="MapVC" customModule="MapDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8cl-sf-Yug">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsc-yA-LSL" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nxv-cY-QgE">
+                                <rect key="frame" x="10" y="98" width="394" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="TNQ-qd-yl3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="locationTapped:" destination="hKq-ub-AoB" eventType="editingDidBegin" id="sr2-co-7EO"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0Mn-1s-7zX" firstAttribute="trailing" secondItem="nxv-cY-QgE" secondAttribute="trailing" constant="10" id="0Gp-bH-ohu"/>
+                            <constraint firstAttribute="bottom" secondItem="rsc-yA-LSL" secondAttribute="bottom" id="Fgo-ZX-dVZ"/>
+                            <constraint firstItem="nxv-cY-QgE" firstAttribute="leading" secondItem="0Mn-1s-7zX" secondAttribute="leading" constant="10" id="Xni-0u-bQG"/>
+                            <constraint firstItem="rsc-yA-LSL" firstAttribute="top" secondItem="0Mn-1s-7zX" secondAttribute="top" id="ccV-3L-JnV"/>
+                            <constraint firstItem="nxv-cY-QgE" firstAttribute="top" secondItem="0Mn-1s-7zX" secondAttribute="top" constant="10" id="d5k-hi-T23"/>
+                            <constraint firstItem="rsc-yA-LSL" firstAttribute="trailing" secondItem="0Mn-1s-7zX" secondAttribute="trailing" id="fe7-tM-u4h"/>
+                            <constraint firstItem="rsc-yA-LSL" firstAttribute="leading" secondItem="0Mn-1s-7zX" secondAttribute="leading" id="kGE-bC-IfC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0Mn-1s-7zX"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Google Maps" id="8Mg-kc-24l"/>
+                    <connections>
+                        <outlet property="mapView" destination="rsc-yA-LSL" id="vtC-ko-InY"/>
+                        <outlet property="txtSearch" destination="nxv-cY-QgE" id="4vc-l4-Moj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0x7-GE-UVo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1905.7971014492755" y="103.79464285714285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="sTF-Pe-k5N">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Yc-ez-5is" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ekk-Vr-pFp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Fi0-xJ-TrR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NXr-qm-eAx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="103.79464285714285"/>
+        </scene>
+    </scenes>
+</document>
