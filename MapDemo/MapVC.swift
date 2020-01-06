@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import CoreLocation
+import MapKit
 
 class MapVC: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
@@ -33,20 +34,12 @@ class MapVC: UIViewController {
     func gotoPlaces() {
         txtSearch.resignFirstResponder()
                let acController = GMSAutocompleteViewController()
-               acController.delegate = self  //as? GMSAutocompleteViewControllerDelegate
+               acController.delegate = self
                present(acController, animated: true, completion: nil)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
 
@@ -60,6 +53,16 @@ extension MapVC: CLLocationManagerDelegate {
 }
 
 extension MapVC: GMSAutocompleteViewControllerDelegate {
+    //============auto added functio after adding the GMSGeoder====
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        
+        
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        
+    }
+    
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
         // Get the place name from 'GMSAutocompleteViewController'
@@ -81,6 +84,25 @@ extension MapVC: GMSAutocompleteViewControllerDelegate {
             //self.delegate?.getThePlaceAddress(vc: self, place: placeGmap, tag: self.FieldTag)
         
             let cord2D = CLLocationCoordinate2D(latitude: (place.coordinate.latitude), longitude: (place.coordinate.longitude))
+       let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(cord2D) { (placemarkers, error) -> Void in
+            if error != nil {
+                print("reverse geodcode fail: \(error!.localizedDescription)")
+                
+            } else {
+                if let places = placemarkers?.results() {
+                    if let place = places.first {
+                        if let lines = place.lines {
+                        print("GEOCODE: Formatted Address: \(lines)")
+                    }
+                } else {
+                    print("GEOCODE: nil first in places")
+                }
+            } else {
+                print("GEOCODE: nil in places")
+            }
+            
+            }
         
             //creating a GMSMarker object
             let marker = GMSMarker()
@@ -106,10 +128,12 @@ extension MapVC: GMSAutocompleteViewControllerDelegate {
     
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         // Dismiss when the user canceled the action
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
     }
     
     
+}
+
 }
 

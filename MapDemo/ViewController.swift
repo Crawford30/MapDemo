@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  MapDemo
 //
-//  Created by JOEL CRAWFORD on 02/01/2020.
+//  
 //  Copyright © 2020 RTS. All rights reserved.
 //
 
@@ -48,6 +48,6 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
            guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
            print("locations = \(locValue.latitude) \(locValue.longitude)")
-       // lblLocation.text = "latitude = \(locValue.latitude), longitude = \(locValue.longitude)"
+      
     }
 }
